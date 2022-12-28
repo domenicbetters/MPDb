@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "c2F+9SSMVwHPZFZsBmJjojGOtt83kkk3w4vcRNEZGR0=",
+  "Source": "MovieDbBackend",
+  "BasePath": "_content/MovieDbBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
