@@ -69,7 +69,7 @@ namespace MovieDbBackend.Controllers
                 }
             }
 
-            return NoContent();
+            return CreatedAtAction("GetMovieItem", new { id = movieItem.Id }, movieItem);
         }
 
         // POST: api/MovieItems
