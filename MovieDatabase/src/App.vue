@@ -1,14 +1,15 @@
 <template>
     <Header />
 
-
     <AddMovie class="add-movie-window" @add-movie="addMovie" v-show="isModalVisible"
               @close="closeModal" />
 
     <div class="button-box">
-        <Button  @click="showModal" text="Add Movie"  />
+        <Button  @click="showModal" text="Add Movie" />
     </div>
+
     <Movies @name-sort="nameSort" @year-sort="yearSort" @delete-movie="deleteMovie" @copy-movie="addMovie" @edit-movie="editMovie" :movies="movies" />
+
 </template>
 
 
@@ -27,6 +28,7 @@
             AddMovie,
             Button,
         },
+
         data() {
             return {
                 movies: [],
@@ -36,12 +38,15 @@
                 isYearSorted: false,
             }
         },
+
         methods: {
             showModal() {
                 this.isModalVisible = true;
             },
+
             async nameSort() {
                 this.movies = await this.fetchMovies()
+
                 if (this.isNameSorted) {
                     this.movies.sort(function (a, b) {
                         let x = a.name.toLowerCase();
@@ -79,8 +84,10 @@
                     this.isNameSorted = !this.isNameSorted
                 }
             },
+
             async yearSort() {
                 this.movies = await this.fetchMovies()
+
                 if (this.isYearSorted) {
                     this.movies.sort(function (a, b) {
                         let x = a.releaseYear;
@@ -118,6 +125,7 @@
                     this.isYearSorted = !this.isYearSorted
                 }
             },
+
             closeModal() {
                 this.isModalVisible = false;
             },
@@ -134,6 +142,7 @@
 
                 }
             },
+
             async addMovie(movie) {
                 
                 const res = await fetch('https://localhost:5001/api/MovieItems', {
@@ -145,13 +154,14 @@
                     },
                     body: JSON.stringify(movie),
                 })
-                console.log(res)
+
                 const data = await res.json()
 
                 this.movies = await [...this.movies, data]
 
                 
             },
+
             async fetchMovies() {
                 const res = await fetch("https://localhost:5001/api/MovieItems")
                 const data = await res.json()
@@ -177,12 +187,8 @@
                     },
                     body: JSON.stringify(updateMovie)
                 })
-                console.log('wahtthefuck')
-                console.log(res)
 
                 const data = await res.json()
-
-                console.log('how bout now')
 
                 const temp = [...this.movies]
                 let movieLocation = 0
@@ -230,15 +236,18 @@
         align-items:end;
         width: 100%;
     }
+
     #yearUp{
         display:none;
     }
+
     #yearDown {
         display: none;
     }
     #yearUpDown {
         color: grey;
     }
+
     #nameUp {
         display: none;
     }
@@ -250,9 +259,11 @@
     #nameUpDown {
         color: grey;
     }
+
     .add-movie-window {
        animation: fadeIn .5s;
     }
+
     @keyframes fadeIn {
         0% {
             opacity: 0;
