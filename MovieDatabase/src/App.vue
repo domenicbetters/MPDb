@@ -132,7 +132,7 @@
            
             async deleteMovie(id) {
                 if (confirm('Are you sure you want to delete this?')) {
-                    const res = await fetch(`https://localhost:5001/api/MovieItems/${id}`, {
+                    const res = await fetch(`https://localhost:5001/api/MotionPictures/${id}`, {
                         method: 'DELETE',
                     })
 
@@ -145,7 +145,7 @@
 
             async addMovie(movie) {
                 
-                const res = await fetch('https://localhost:5001/api/MovieItems', {
+                const res = await fetch('https://localhost:5001/api/MotionPictures', {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -163,13 +163,13 @@
             },
 
             async fetchMovies() {
-                const res = await fetch("https://localhost:5001/api/MovieItems")
+                const res = await fetch("https://localhost:5001/api/MotionPictures")
                 const data = await res.json()
                 return data
             },
 
             async fetchMovie(id) {
-                const res = await fetch(`https://localhost:5001/api/MovieItems/${id}`)
+                const res = await fetch(`https://localhost:5001/api/MotionPictures/${id}`)
                 const data = await res.json()
                 return data
             },
@@ -179,7 +179,7 @@
                 const movieToEdit = await this.fetchMovie(newMovie.id)
                 const updateMovie = { ...movieToEdit,  name: newMovie.name, description: newMovie.description, releaseYear: newMovie.releaseYear }
 
-                const res = await fetch(`https://localhost:5001/api/MovieItems/${newMovie.id}`, {
+                const res = await fetch(`https://localhost:5001/api/MotionPictures/${newMovie.id}`, {
                     method: 'PUT',
                     headers: {
                         'Accept': 'application/json',

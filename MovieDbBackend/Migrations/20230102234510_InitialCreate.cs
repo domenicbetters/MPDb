@@ -5,13 +5,13 @@
 namespace MovieDbBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class MovieDB : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "MovieItems",
+                name: "MotionPictures",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -22,7 +22,7 @@ namespace MovieDbBackend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieItems", x => x.Id);
+                    table.PrimaryKey("PK_MotionPictures", x => x.Id);
                 });
         }
 
@@ -30,7 +30,7 @@ namespace MovieDbBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieItems");
+                name: "MotionPictures");
         }
     }
 }

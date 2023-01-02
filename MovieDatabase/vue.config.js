@@ -24,7 +24,7 @@ module.exports = {
             cert: fs.readFileSync(certFilePath),
         },
         proxy: {
-            '^/MovieItem': {
+            '^/MotionPicture': {
                 target: 'https://localhost:5001/'
             }
         },

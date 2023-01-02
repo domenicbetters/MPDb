@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("https://localhost:5001/api/MovieItems",
+                          policy.WithOrigins("https://localhost:5001/api/MotionPictures",
                                                  "https://localhost:5002")
                                                  .AllowAnyHeader()
                                                  .AllowAnyMethod();
@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MovieContext>(opt =>
+builder.Services.AddDbContext<MotionPictureContext>(opt =>
     opt.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=MovieDatabase;Integrated Security=True"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieDbBackend.Models;
 
@@ -10,12 +9,10 @@ using MovieDbBackend.Models;
 
 namespace MovieDbBackend.Migrations
 {
-    [DbContext(typeof(MovieContext))]
-    [Migration("20221228164747_MovieDB")]
-    partial class MovieDB
+    [DbContext(typeof(MotionPictureContext))]
+    partial class MotionPictureContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +21,7 @@ namespace MovieDbBackend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MovieDbBackend.Models.MovieItem", b =>
+            modelBuilder.Entity("MovieDbBackend.Models.MotionPicture", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +42,7 @@ namespace MovieDbBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MovieItems");
+                    b.ToTable("MotionPictures");
                 });
 #pragma warning restore 612, 618
         }

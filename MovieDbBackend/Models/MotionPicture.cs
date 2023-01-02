@@ -1,6 +1,6 @@
 ﻿namespace MovieDbBackend.Models
 {
-    public class MovieItem
+    public class MotionPicture
     {
         public int Id { get; set; }
 
