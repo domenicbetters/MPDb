@@ -12,7 +12,6 @@
 
 </template>
 
-
 <script>
 
     import HeaderComponent from './components/HeaderComponent'
