@@ -7,6 +7,8 @@ Utilized Font Awesome additionally and if I were to rework this in the future, I
 When first running using Visual studio, you must first set up the database by running add-migration InitialCreate
 then running update-database.
 
+Also included is a back up of my local database.
+
 Functionality:
 
 You are able to add a title, description and release year for any movie you wish to store in the database.
