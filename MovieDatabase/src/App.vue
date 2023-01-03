@@ -1,32 +1,33 @@
 <template>
-    <Header />
+    <HeaderComponent />
 
     <AddMovie class="add-movie-window" @add-movie="addMovie" v-show="isModalVisible"
               @close="closeModal" />
 
     <div class="button-box">
-        <Button  @click="showModal" text="Add Movie" />
+        <ButtonComponent  @click="showModal" text="Add Movie" />
     </div>
 
-    <Movies @name-sort="nameSort" @year-sort="yearSort" @delete-movie="deleteMovie" @copy-movie="addMovie" @edit-movie="editMovie" :movies="movies" />
+    <MoviesComponent @name-sort="nameSort" @year-sort="yearSort" @delete-movie="deleteMovie" @copy-movie="addMovie" @edit-movie="editMovie" :movies="movies" />
 
 </template>
 
 
 <script>
 
-    import Header from './components/Header'
-    import Movies from './components/Movies'
+    import HeaderComponent from './components/HeaderComponent'
+    import MoviesComponent from './components/MoviesComponent'
     import AddMovie from './components/AddMovie'
-    import Button from './components/Button'
+    import ButtonComponent from './components/ButtonComponent'
 
     export default {
         name: 'App',
+
         components: {
-            Header,
-            Movies,
+            HeaderComponent,
+            MoviesComponent,
             AddMovie,
-            Button,
+            ButtonComponent,
         },
 
         data() {
@@ -132,7 +133,7 @@
            
             async deleteMovie(id) {
                 if (confirm('Are you sure you want to delete this?')) {
-                    const res = await fetch(`https://localhost:5001/api/MotionPictures/${id}`, {
+                    await fetch(`https://localhost:5001/api/MotionPictures/${id}`, {
                         method: 'DELETE',
                     })
 
@@ -158,7 +159,6 @@
                 const data = await res.json()
 
                 this.movies = await [...this.movies, data]
-
                 
             },
 
@@ -207,11 +207,14 @@
         
         async created() {
             this.movies = await this.fetchMovies()
-        }
+        },
+
+        emits: ['delete-movie', 'edit-movie', 'copy-movie', 'name-sort', 'year-sort']
     }
 </script>
 
 <style>
+
     #app {
         font-family: 'Barlow Condensed', sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -233,7 +236,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        align-items:end;
+        align-items:flex-end;
         width: 100%;
     }
 

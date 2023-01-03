@@ -6,9 +6,8 @@
 
 <script>
     
-
     export default {
-        name: 'Header',
+        name: 'HeaderComponent',
 
         props: {
             title: {
@@ -16,14 +15,12 @@
                 default: 'Motion Picture Database',
             },
         },
-
-        components: {
-            
-        }
     }
+
 </script>
 
 <style scoped>
+
     header {
         display: flex;
         justify-content: center;
@@ -37,7 +34,9 @@
         font-family: 'Teko', sans-serif;
         font-size: 2rem;
     }
+
     h1 {
         margin: 0px;
     }
+
 </style>

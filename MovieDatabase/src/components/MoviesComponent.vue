@@ -1,4 +1,5 @@
 <template>
+    
     <table>
         <tr>
             <th class="clickableHeader" @click="$emit('name-sort')">
@@ -7,17 +8,22 @@
                 <i id="nameUpDown" class="fa-solid fa-arrows-up-down"></i>
                 Name
             </th>
+
             <th>Description</th>
+
             <th class="clickableHeader" @click="$emit('year-sort')">
                 <i id="yearUp" class="fa-sharp fa-solid fa-arrow-up"></i>
                 <i id="yearDown" class="fa-sharp fa-solid fa-arrow-down"></i>
                 <i id="yearUpDown" class="fa-solid fa-arrows-up-down"></i>
                 Release Year
             </th>
+
             <th>Actions</th>
         </tr>
-        <tr :key="movie.id" v-for="movie, id) in movies">
-            <Movie @delete-movie="$emit('delete-movie', movie.id)"
+
+        <tr :key="movie.id" v-for="(movie) in movies">
+           
+            <MovieComponent @delete-movie="$emit('delete-movie', movie.id)"
                    @edit-movie="editMovie"
                    @copy-movie="copyMovie"
                    :movie="movie" />
@@ -28,24 +34,29 @@
 </template>
 
 <script>
-    import Movie from './Movie'
+    import MovieComponent from './MovieComponent'
 
     export default {
-        name: 'Movies',
+        name: 'MoviesComponent',
+
         props: {
             movies: Array,
         },
+
         components: {
-            Movie
+            MovieComponent
         },
+
         methods: {
             copyMovie(movie) {
                 this.$emit('copy-movie', movie)
             },
+
             editMovie(movie) {
                 this.$emit('edit-movie', movie)
             },
         },
+
         data() {
             return {
                 name: '',
@@ -53,11 +64,13 @@
                 releaseYear: '',
             }
         },
-        emits: ['delete-movie', 'edit-movie', 'test']
+
+        emits: ['delete-movie', 'edit-movie', 'copy-movie', 'name-sort', 'year-sort']
     }
 </script>
 
 <style>
+    
     table {
         border: 5px solid #120f1c;
         border-spacing: 50px 0;
@@ -95,4 +108,5 @@
     .clickableHeader {
         cursor: pointer;
     }
+
 </style>

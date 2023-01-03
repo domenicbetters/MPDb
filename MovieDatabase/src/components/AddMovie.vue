@@ -1,18 +1,26 @@
 <template>
     <div class="modal-backdrop">
         <div class="modal">
+
             <header class="modal-header">
                <h1>Add a Movie</h1>
             </header>
+
             <form @submit="onSubmit" class="add-form">
                 <section class="modal-body">
-                    <slot name="body">
-
                         <div class="form-control">
-                            <input id="addName" type="text" v-model="name" name="name" placeholder="Movie Title" />
+                            <input id="addName" 
+                                   type="text" 
+                                   v-model="name" 
+                                   name="name" 
+                                   placeholder="Movie Title" />
                         </div>
                         <div class="form-control">
-                            <input id="addDescription" type="text" v-model="description" name="description" placeholder="Description" />
+                            <input id="addDescription" 
+                                   type="text" 
+                                   v-model="description" 
+                                   name="description" 
+                                   placeholder="Description" />
                         </div>
                         <div class="form-control">
                             <input id="addYear" type="text"
@@ -21,9 +29,6 @@
                                    placeholder="Release Year"
                                    style="width:fit-content"/>
                         </div>
-                        
-
-                    </slot>
                 </section>
 
                 <footer class="modal-footer">
@@ -45,6 +50,7 @@
 <script>
     export default {
         name: 'AddMovie',
+
         data() {
             return {
                 name: '',
@@ -53,6 +59,7 @@
 
             }
         },
+
         methods: {
             close() {
                 this.name = ''
@@ -65,6 +72,7 @@
 
                 this.$emit('close');
             },
+
             onSubmit(e) {
                 e.preventDefault()
                 if (this.name.length > 0 || this.name.length <= 50) {

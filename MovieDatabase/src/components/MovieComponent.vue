@@ -1,4 +1,5 @@
 <template>
+    
     <td>{{movie.name}}</td>
     <td>{{movie.description}}</td>
     <td>{{movie.releaseYear}}</td>
@@ -16,10 +17,17 @@
             <form @submit="onSubmit" class="add-form">
                 <section class="modal-body">
                     <div class="form-control">
-                        <input id="editName" type="text" v-model="name" name="name" />
+                        <input id="editName" 
+                               type="text" 
+                               v-model="name" 
+                               name="name" />
                     </div>
                     <div class="form-control">
-                        <input id="editDescription" type="text" v-model="description" name="description" placeholder="Description" />
+                        <input id="editDescription" 
+                               type="text" 
+                               v-model="description" 
+                               name="description" 
+                               placeholder="Description" />
                     </div>
                     <div class="form-control">
                         <input type="text"
@@ -58,16 +66,23 @@
             </header>
             <form @submit="onCopySubmit" class="add-form">
                 <section class="modal-body">
-                    <slot name="body">
-
                         <div class="form-control">
-                            <input  style="display:none" type="text" v-model="id" name="id" />
+                            <input style="display:none" 
+                                   type="text" v-model="id" 
+                                   name="id" />
                         </div>
                         <div class="form-control">
-                            <input id="copyName" type="text" v-model="name" name="name" />
+                            <input id="copyName" 
+                                   type="text" 
+                                   v-model="name" 
+                                   name="name" />
                         </div>
                         <div class="form-control">
-                            <input id="copyDescription" type="text" v-model="description" name="description" placeholder="Description" />
+                            <input id="copyDescription" 
+                                   type="text" 
+                                   v-model="description" 
+                                   name="description" 
+                                   placeholder="Description" />
                         </div>
                         <div class="form-control">
                             <input type="text"
@@ -77,9 +92,6 @@
                                    placeholder="Release Year"
                                    style="width:fit-content" />
                         </div>
-
-
-                    </slot>
                 </section>
 
                 <footer class="modal-footer">
@@ -100,10 +112,12 @@
 
 <script>
     export default {
-        name: 'Movie',
+        name: 'MovieComponent',
+
         props: {
             movie: Object
         },
+
         data() {
             return {
                 isEditModalVisable: false,
@@ -114,28 +128,37 @@
                 releaseYear: this.movie.releaseYear,
             }
         },
+
+        emits: ['delete-movie', 'edit-movie', 'copy-movie', 'name-sort', 'year-sort'],
+
         methods: {
+
             onDelete(id) {
                 this.$emit('delete-movie', id)
             },
+
             onClick() {
                 this.isEditModalVisable = !this.isEditModalVisable
                 this.name = this.movie.name
                 this.description = this.movie.description
                 this.releaseYear = this.movie.releaseYear
+
                 document.getElementById("editName").style.border = "none";
                 document.getElementById("editDescription").style.border = "none";
                 document.getElementById("editYear").style.border = "none";
             },
+
             onCopyClick() {
                 this.isCopyModalVisable = !this.isCopyModalVisable
                 this.name = this.movie.name
                 this.description = this.movie.description
                 this.releaseYear = this.movie.releaseYear
+
                 document.getElementById("copyName").style.border = "none";
                 document.getElementById("copyDescription").style.border = "none";
                 document.getElementById("copyYear").style.border = "none";
             },
+
             onSubmit(e) {
                 e.preventDefault()
                 if (this.name.length > 0 || this.name.length <= 50) {
@@ -147,6 +170,7 @@
                 if (this.releaseYear.length > 0 || isNaN(this.releaseYear) === false) {
                     document.getElementById("editYear").style.border = "none";
                 }
+
                 if (this.name.length < 1 || this.name.length > 50) {
                     if (this.name.length < 1) {
                         alert('You must enter a title for this movie.')
@@ -157,11 +181,13 @@
                     document.getElementById("editName").style.border = "2px solid red";
                     return
                 }
+
                 else if (this.description.length > 500) {
                     alert('Description can not exceed 500 characters')
                     document.getElementById("editDescription").style.border = "2px solid red";
                     return
                 }
+
                 else if (this.releaseYear.length < 1 || isNaN(this.releaseYear)) {
                     if (this.releaseYear.length < 1) {
                         alert('Movie must have a release year.')
@@ -172,8 +198,8 @@
                     document.getElementById("editYear").style.border = "2px solid red";
                     return
                 }
-                else {
 
+                else {
                     const newMovie = {
 
                         id: this.id,
@@ -195,8 +221,6 @@
                     alert('Congrats! you just edited a movie!.')
 
                     this.isEditModalVisable = !this.isEditModalVisable
-
-                    
                 }
 
             },
@@ -211,6 +235,7 @@
                 if (this.releaseYear.length > 0 || isNaN(this.releaseYear) === false) {
                     document.getElementById("copyYear").style.border = "none";
                 }
+
                 if (this.name.length < 1 || this.name.length > 50) {
                     if (this.name.length < 1) {
                         alert('You must enter a title for this movie.')
@@ -219,13 +244,16 @@
                         alert('Title can only be 50 characters or less.')
                     }
                     document.getElementById("copyName").style.border = "2px solid red";
+
                     return
                 }
+
                 else if (this.description.length > 500) {
                     alert('Description can not exceed 500 characters')
                     document.getElementById("copyDescription").style.border = "2px solid red";
                     return
                 }
+
                 else if (this.releaseYear.length < 1 || isNaN(this.releaseYear)) {
                     if (this.releaseYear.length < 1) {
                         alert('Movie must have a release year.')
@@ -234,8 +262,10 @@
                         alert('Release year entered must be an actual numerical year.')
                     }
                     document.getElementById("copyYear").style.border = "2px solid red";
+
                     return
                 }
+
                 else {
 
                     const newMovie = {
@@ -246,8 +276,6 @@
                     }
 
                     this.$emit('copy-movie', newMovie)
-
-
 
                     this.name = ''
                     this.description = ''
@@ -267,12 +295,15 @@
 </script>
 
 <style scope>
+
     .fa-trash-can {
         color: #5c0600;
     }
+
     .fa-square-pen {
         color: #252329
     }
+
     .fa-copy {
         color: #292823
     }
@@ -343,25 +374,32 @@
         text-align: center;
         margin: 10px;
     }
+
     .form-control {
         display:flex;
         flex-direction:column;
         justify-content:center;
         align-items:center;
     }
+
     .action-icon:hover {
         cursor:pointer;
     }
+
     .action-icon:active {
        color: white;
     }
+
     .copy-button {
         background: #292823;
     }
+
     .copy-button:active {
         background: #1a1814;
     }
+
     .edit-button:active {
         background: #141517;
     }
+
 </style>
